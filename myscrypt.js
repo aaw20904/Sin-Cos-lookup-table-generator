@@ -1,21 +1,23 @@
 class trigGen {
 
-    constructor (amplitude,dlength,fmt="unsigned") {
+    constructor (amplitude,dlength,fmt="unsigned",offset=0) {
        this.amplitude = amplitude;
        this.dlength = dlength;
        this.fmt = fmt;
+       this.offset = offset;
        /*calculating step*/
        this.step = 6.28319 / dlength;
     }
 
     getSinData (order = 1, datatype='word',format="hex") {
+        
         let templateLength = 0;
          let prefix = '';
         let result = Math.sin((this.step * order));
         if (this.fmt==="unsigned") {
-            result = (result * (this.amplitude/2)) + (this.amplitude / 2);
+            result = (result * (this.amplitude/2)) + (this.amplitude / 2) + this.offset;
         } else {
-            result = result * this.amplitude;
+            result = (result * this.amplitude) + this.offset;
         }
         
          result = result | 0;
@@ -47,12 +49,13 @@ class trigGen {
     
 
     getCosData (order = 1, datatype="word",format="hex") {
+       
         let prefix = '';
         let result = Math.cos((this.step * order));
         if (this.fmt==="unsigned") {
-            result = (result * (this.amplitude/2)) + (this.amplitude / 2);
+            result = (result * (this.amplitude/2)) + (this.amplitude / 2) + this.offset;
         } else {
-            result = result * this.amplitude;
+            result = (result * this.amplitude) + this.offset;
         }
 
         result = result | 0;
@@ -85,8 +88,8 @@ class trigGen {
         let resultCos = Math.cos((this.step * order));
         let resultSin = Math.sin((this.step * order));
    
-            resultSin = (resultSin * (this.amplitude/2)) + (this.amplitude / 2);
-            resultCos = (resultCos * (this.amplitude/2)) + (this.amplitude / 2);
+            resultSin = (resultSin * (this.amplitude/2)) + (this.amplitude / 2) + this.offset;
+            resultCos = (resultCos * (this.amplitude/2)) + (this.amplitude / 2) + this.offset;
         
         resultSin = resultSin | 0;
         resultCos = resultCos | 0;
@@ -111,7 +114,7 @@ class trigGen {
 
 
 /*get input data from a form*/
-function getInputData (idStep,idAmpl,rSin,rCos,rSinCos,rSigned,rUnsigned,rByte,rWord,rHex,rDec) {
+function getInputData (idStep,idAmpl,rSin,rCos,rSinCos,rSigned,rUnsigned,rByte,rWord,rHex,rDec,iOffset) {
     /* get elements*/
     let stepElemem = document.getElementById(idStep);
     let amplElem = document.getElementById(idAmpl);
@@ -124,12 +127,14 @@ function getInputData (idStep,idAmpl,rSin,rCos,rSinCos,rSigned,rUnsigned,rByte,r
     let wordRadio = document.getElementById(rWord);
     let fmtDec = document.getElementById(rDec);
     let fmtHex = document.getElementById(rHex);
+    let nOffset = document.getElementById(iOffset);
     let signedCheckbox;
   
   
     let result = {};
     result.steps=parseInt(stepElemem.value);
     result.amplitude = parseInt(amplElem.value);
+    result.offset = parseInt(nOffset.value);
     if (sinRadio.checked == true) {
                 result.mode="SIN";
     } if (CosRadio.checked == true) {
@@ -155,7 +160,7 @@ function getInputData (idStep,idAmpl,rSin,rCos,rSinCos,rSigned,rUnsigned,rByte,r
 /************************************************************* */
 
   function processData(options){
-     let gen = new trigGen(options.amplitude,options.steps,options.sign);
+     let gen = new trigGen(options.amplitude,options.steps,options.sign,options.offset);
      let outBuffer=' ';
     let z = 0;
 
@@ -207,7 +212,7 @@ function onClick(){
     let resultWindow = document.getElementById('#outData');
     let zadanie;
     let dataToOut;
-    zadanie = getInputData('#nSteps','#maxValue','#chSin','#chCos','#chSinCos','#chSigned','#chUnsigned','#chByte','#chWord','#chHex','#chDec');
+    zadanie = getInputData('#nSteps','#maxValue','#chSin','#chCos','#chSinCos','#chSigned','#chUnsigned','#chByte','#chWord','#chHex','#chDec','#offset');
     /****checking - is there a correct data */
     if (zadanie.width=='byte') {
         if((zadanie.amplitude > 255)&&(zadanie.sign == 'unsigned')){
