@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="1.css">
+
+</head>
+<script src="./myscrypt.js"></script>
+<body>
+    <div class="main-wrapper">
+        <section class="inputBar">
+            <label class="labels" for="nSteps">Enter number of points:</label>
+            <input class="inputs" type="text" name="nSteps" id="#nSteps" >
+            <label class="labels" for="maxValue">Enter max value:</label>
+            <input class="inputs" type="text" name="maxValue" id="#maxValue" min="4" max="65535">
+            <article class="radio-wrapper">
+              <input type="radio" id="#chSin" name="n1" value="1">
+             <label for="chSin" class="labels">SIN</label>
+           </article>
+           <article class="radio-wrapper">
+             <input type="radio" id="#chCos" name="n1" value="2">
+             <label for="chCos"  class="labels">COS</label>
+           </article>
+           <article class="radio-wrapper">
+             <input type="radio" id="#chSinCos" name="n1" value="3">
+             <label for="chSinCos"  class="labels">SINCOS</label>
+             
+           </article>
+           <article class="radio-wrapper">
+            <p class="labels">SINCOS - means high word/byte:SIN, low word/byte:COS</p>
+           </article>
+           <!----------------------------------------------------->
+           <article class="radio-wrapper"style="border-top:1px solid orange;">
+            <input type="radio" id="#chByte" name="n2" value="1">
+           <label for="chSin" class="labels">byte</label>
+         </article>
+         <article class="radio-wrapper">
+           <input type="radio" id="#chWord" name="n2" value="2">
+           <label for="chCos"  class="labels">word</label>
+         </article>
+         <!------------------------------------------------------------->
+         <article class="radio-wrapper"style="border-top:1px solid orange;">
+            <input type="radio" id="#chSigned" name="n3" value="1">
+           <label for="chSin" class="labels">signed</label>
+         </article>
+         <article class="radio-wrapper">
+           <input type="radio" id="#chUnsigned" name="n3" value="2">
+           <label for="chCos"  class="labels">unsigned</label>
+         </article>
+         <!------------------------------------------------------------>
+         <article class="radio-wrapper"style="border-top:1px solid orange;">
+          <input type="radio" id="#chDec" name="n4" value="1">
+         <label for="chSin" class="labels">decimal</label>
+       </article>
+       <article class="radio-wrapper">
+         <input type="radio" id="#chHex" name="n4" value="2">
+         <label for="chCos"  class="labels">Hexedecimal</label>
+       </article>
+         
+
+
+            <input class="my-btn" id="#startButton" type="button" value="Generate a lookup table">
+        </section>
+
+    </div>
+    <section class="output-window" id="#outData">
+       ***
+    </section>
+</body>
+</html>

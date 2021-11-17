@@ -1,0 +1,51 @@
+.main-wrapper{
+    margin:17px;
+    padding:17px;
+    background-color:antiquewhite;
+}
+
+.inputBar{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+
+.inputs{
+    margin:4px;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 17px;
+    color:black;
+    background-color: white;
+    padding:4px;
+    max-width: 320px;
+}
+.labels{
+    padding:4px;
+    margin:4px;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 17px;
+}
+.my-btn{
+    max-width: 320px;
+    margin: 4px;
+    padding:4px;
+    background-color: cornflowerblue;
+    color:cornsilk;
+    cursor: pointer;
+}
+ 
+.radio-wrapper{
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.output-window{
+    margin:17px;
+    padding:17px;
+    background-color:white;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 17px;
+    border:1px solid orange;
+}
