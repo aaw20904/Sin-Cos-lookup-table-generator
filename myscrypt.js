@@ -213,7 +213,12 @@ function onClick(){
     let zadanie;
     let dataToOut;
     zadanie = getInputData('#nSteps','#maxValue','#chSin','#chCos','#chSinCos','#chSigned','#chUnsigned','#chByte','#chWord','#chHex','#chDec','#offset');
+
     /****checking - is there a correct data */
+    if((zadanie.steps < 10) ||(zadanie.steps > 650000)){
+        alert ('Number of steps must be in range from 10 to 65000!');
+        return;
+    }
     if (zadanie.width=='byte') {
         if((zadanie.amplitude > 255)&&(zadanie.sign == 'unsigned')){
             alert('Input ERROR - Too big amplitude!');
